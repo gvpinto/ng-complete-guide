@@ -8,21 +8,10 @@ import {
 
 @Directive({ selector: '[appDropdown]' })
 export class DropdownDirective {
-  open: boolean = false;
-  //   @HostBinding('class') class: String;
-  constructor(private elRef: ElementRef, private renderer: Renderer2) {
-    // this.class = 'button-group';
-    console.log('In Constructor');
-    this.renderer.addClass(elRef, 'open');
-  }
+  @HostBinding('class.open') open: boolean = false;
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
-  @HostListener('click') onClick(event: Event) {
-    console.log(event);
-    // if (this.open) {
-    //   this.class = 'button-group open';
-    // } else {
-    //   this.class = 'button-group';
-    // }
+  @HostListener('click') toggleOpne(event: Event) {
     this.open = !this.open;
   }
 }
